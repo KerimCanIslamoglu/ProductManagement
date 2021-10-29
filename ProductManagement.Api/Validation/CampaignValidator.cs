@@ -18,7 +18,7 @@ namespace ProductManagement.Api.Validation
             RuleFor(campaing => campaing.Duration).GreaterThan(0).WithMessage("Duration field must be greater than 0");
 
             RuleFor(campaing => campaing.Limit).NotEmpty().WithMessage("Limit field is required");
-            RuleFor(campaing => campaing.Limit).GreaterThan(0).WithMessage("Limit field must be greater than 0");
+            RuleFor(campaing => campaing.Limit).ExclusiveBetween(0,100).WithMessage("Limit field must between 0 adn 100");
 
             RuleFor(campaing => campaing.TargetSalesCount).NotEmpty().WithMessage("TargetSalesCount field is required");
             RuleFor(campaing => campaing.TargetSalesCount).GreaterThan(0).WithMessage("TargetSalesCount field must be greater than 0");

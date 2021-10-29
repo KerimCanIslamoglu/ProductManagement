@@ -43,9 +43,12 @@ namespace ProductManagement.Business.Concrete
                 _campaignDal.Create(campaign);
             }
 
-
-
             return campaign;
+        }
+
+        public Campaign GetCampaignByName(string campaignName)
+        {
+            return _campaignDal.GetOne(x => x.CampaignName == campaignName);
         }
     }
 }

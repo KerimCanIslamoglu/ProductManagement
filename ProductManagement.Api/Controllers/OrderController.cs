@@ -44,7 +44,7 @@ namespace ProductManagement.Api.Controllers
                 {
                     Success = false,
                     StatusCode = 404,
-                    Message = $"Order is not created; the product with the {createOrderDto.ProductCode} code does not exist",
+                    Message = $"Order is not created",
                     Response = null
                 });
             }

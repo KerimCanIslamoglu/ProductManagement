@@ -11,5 +11,7 @@ namespace ProductManagement.Business.Abstract
     {
         Campaign CreateCampaign(string campaignName, string productCode, int duration, int limit, int targetSalesCount);
 
+        Campaign GetCampaignByName(string campaignName);
+
     }
 }

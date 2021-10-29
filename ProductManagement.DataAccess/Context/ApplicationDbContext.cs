@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProductManagement.DataAccess.Context
 {
-   public class ApplicationDbContext:DbContext
+    public class ApplicationDbContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,12 +28,21 @@ namespace ProductManagement.DataAccess.Context
             modelBuilder.Entity<Order>()
                 .HasOne<Product>(e => e.Product)
                 .WithMany(c => c.Orders)
-                .HasForeignKey(s=>s.ProductId);
+                .HasForeignKey(s => s.ProductId);
 
             modelBuilder.Entity<Campaign>()
              .HasOne<Product>(e => e.Product)
              .WithMany(c => c.Campaigns)
              .HasForeignKey(s => s.ProductId);
+
+            modelBuilder.Entity<Time>().HasData(
+                new Time
+                {
+                    Id=1,
+                    CurrentTime=0
+                }
+            );
+
 
             base.OnModelCreating(modelBuilder);
         }
@@ -41,5 +50,6 @@ namespace ProductManagement.DataAccess.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<Time> Times { get; set; }
     }
 }

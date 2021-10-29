@@ -15,10 +15,12 @@ namespace ProductManagement.Api.Controllers
     public class CampaignController : ControllerBase
     {
         private readonly ICampaignService _campaignService;
+        private readonly ITimeService _timeService;
 
-        public CampaignController(ICampaignService campaignService)
+        public CampaignController(ICampaignService campaignService, ITimeService timeService)
         {
             _campaignService = campaignService;
+            _timeService = timeService;
         }
 
         [HttpPost]
@@ -58,38 +60,51 @@ namespace ProductManagement.Api.Controllers
         [Route("api/product/get_campaign_info/{campaignName}")]
         public IActionResult GetCampaignInfo(string campaignName)
         {
-            //TODO yapılacak.
-            return null;
-            //var product = _productService.GetProductByProductCode(productCode);
+            var campaignInfoDto = new CampaignInfoDto();
 
-            //if (product == null)
-            //{
-            //    return NotFound(new ResponseModel<ProductDto>
-            //    {
-            //        Success = false,
-            //        StatusCode = 404,
-            //        Message = $"Product not found ",
-            //        Response = null
-            //    });
-            //}
-            //else
-            //{
-            //    var productDto = new ProductDto()
-            //    {
-            //        Id = product.Id,
-            //        Price = product.Price,
-            //        ProductCode = product.ProductCode,
-            //        Stock = product.Stock
-            //    };
+            var campaign = _campaignService.GetCampaignByName(campaignName);
+            var currentTime = _timeService.GetCurrentTime();
 
-            //    return Ok(new ResponseModel<ProductDto>
-            //    {
-            //        Success = true,
-            //        StatusCode = 200,
-            //        Message = $"Product {product.ProductCode} info; price {product.Price}, stock {product.Stock} ",
-            //        Response = productDto
-            //    });
-            //}
+            if ((currentTime.CurrentTime < campaign.Duration) 
+                && (campaign.TotalSales < campaign.TargetSalesCount))
+                campaignInfoDto.Status = "Active";
+            else
+                campaignInfoDto.Status = "Ended";
+
+
+            campaignInfoDto.AverageItemPrice = campaign.AverageItemPrice;
+            campaignInfoDto.CampaignName = campaign.CampaignName;
+            campaignInfoDto.TargetSales = campaign.TargetSalesCount;
+            campaignInfoDto.TotalSales = campaign.TotalSales;
+            campaignInfoDto.TurnOver = campaign.TurnOver;
+
+
+            if (campaign != null)
+            {
+                return Ok(new ResponseModel<CreateCampaignDto>
+                {
+                    Success = true,
+                    StatusCode = 200,
+                    Message = $"Campaign {campaignInfoDto.CampaignName} info; Status {campaignInfoDto.Status}, Target Sales {campaignInfoDto.TargetSales}, Total Sales {campaignInfoDto.TotalSales}, Turnover {campaignInfoDto.TurnOver}, Average Item Price {campaignInfoDto.AverageItemPrice}",
+                    Response = null
+                });
+            }
+            else
+            {
+                return NotFound(new ResponseModel<CreateCampaignDto>
+                {
+                    Success = false,
+                    StatusCode = 404,
+                    Message = $"Campaign cannot found. Invalid campaign name: {campaignName}.",
+                    Response = null
+                });
+            }
+
+
+
+
+
+           
 
         }
     }

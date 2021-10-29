@@ -50,10 +50,12 @@ namespace ProductManagement.Api
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<ICampaignService, CampaignService>();
+            services.AddScoped<ITimeService, TimeService>();
 
             services.AddScoped<IProductDal, ProductDal>();
             services.AddScoped<IOrderDal, OrderDal>();
             services.AddScoped<ICampaignDal, CampaignDal>();
+            services.AddScoped<ITimeDal, TimeDal>();
 
 
 
@@ -92,7 +94,7 @@ namespace ProductManagement.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,ApplicationDbContext db)
         {
             if (env.IsDevelopment())
             {
@@ -100,6 +102,8 @@ namespace ProductManagement.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProductManagement.Api v1"));
             }
+
+            db.Database.EnsureCreated();
 
             app.UseRouting();
 
