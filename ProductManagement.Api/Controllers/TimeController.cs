@@ -21,7 +21,7 @@ namespace ProductManagement.Api.Controllers
         }
 
         [HttpPut]
-        [Route("api/Time/increase_time")]
+        [Route("api/time/increase_time")]
         public IActionResult IncreaseTime(int increment)
         {
             _timeService.IncreaseCurrentTime(increment);
@@ -40,7 +40,7 @@ namespace ProductManagement.Api.Controllers
         }
 
         [HttpPut]
-        [Route("api/Time/reset_time")]
+        [Route("api/time/reset_time")]
         public IActionResult ResetTime()
         {
             _timeService.ResetTime();

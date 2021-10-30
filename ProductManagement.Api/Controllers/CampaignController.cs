@@ -57,7 +57,7 @@ namespace ProductManagement.Api.Controllers
 
 
         [HttpGet]
-        [Route("api/product/get_campaign_info/{campaignName}")]
+        [Route("api/campaign/get_campaign_info/{campaignName}")]
         public IActionResult GetCampaignInfo(string campaignName)
         {
             var campaignInfoDto = new CampaignInfoDto();
