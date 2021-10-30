@@ -11,5 +11,6 @@ namespace ProductManagement.Business.Abstract
     {
         Product GetProductByProductCode(string productCode);
         void CreateProduct(Product product);
+        void Update(Product product);
     }
 }

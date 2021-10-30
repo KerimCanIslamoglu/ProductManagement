@@ -27,6 +27,11 @@ namespace ProductManagement.Business.Concrete
             _productDal.Create(product);
         }
 
+        public void Update(Product product)
+        {
+            _productDal.Update(product);
+        }
+
         public Product GetProductByProductCode(string productCode)
         {
             Product productDetail = _productDal.GetOne(x => x.ProductCode == productCode);

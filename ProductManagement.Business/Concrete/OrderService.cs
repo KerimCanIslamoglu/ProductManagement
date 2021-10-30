@@ -40,7 +40,7 @@ namespace ProductManagement.Business.Concrete
                     if (campaign != null)
                     {
                         if ((campaign.Duration > currentTime.CurrentTime)
-                            && campaign.TotalSales < campaign.TargetSalesCount
+                            && campaign.TotalSales <= campaign.TargetSalesCount
                            && ((campaign.TotalSales + quantity) <= campaign.TargetSalesCount))
                         {
                             var random = new Random();
@@ -59,7 +59,7 @@ namespace ProductManagement.Business.Concrete
 
                             campaign.TotalSales += quantity;
                             campaign.TurnOver += (quantity * productDetail.Price);
-                            campaign.AverageItemPrice = totalProductPrice / productOrders.Count;
+                            campaign.AverageItemPrice = totalProductPrice / (productOrders.Count+1);
 
                             _campaignDal.Update(campaign);
                         }
@@ -72,6 +72,9 @@ namespace ProductManagement.Business.Concrete
                         };
 
                         _orderDal.Create(order);
+
+                        productDetail.Stock -= quantity;
+                        _productDal.Update(productDetail);
                     }
                     else
                     {
@@ -83,11 +86,13 @@ namespace ProductManagement.Business.Concrete
                         };
 
                         _orderDal.Create(order);
+
+                        productDetail.Stock -= quantity;
+                        _productDal.Update(productDetail);
                     }
                 }
             }
             return order;
-
         }
     }
 }
