@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.Api", "ProductManagement.Api\ProductManagement.Api.csproj", "{7B06E4F9-FE95-47CA-9B0C-A6C3887B01EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.Api", "ProductManagement.Api\ProductManagement.Api.csproj", "{7B06E4F9-FE95-47CA-9B0C-A6C3887B01EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.Business", "ProductManagement.Business\ProductManagement.Business.csproj", "{85D01440-FFB8-4EE4-BCA0-1EDD919B3C2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.Business", "ProductManagement.Business\ProductManagement.Business.csproj", "{85D01440-FFB8-4EE4-BCA0-1EDD919B3C2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.DataAccess", "ProductManagement.DataAccess\ProductManagement.DataAccess.csproj", "{64D0EF96-3AB0-4E13-B45E-E9216326ECD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.DataAccess", "ProductManagement.DataAccess\ProductManagement.DataAccess.csproj", "{64D0EF96-3AB0-4E13-B45E-E9216326ECD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.Entities", "ProductManagement.Entities\ProductManagement.Entities.csproj", "{18CDF5BA-7F1A-49FB-8877-C86EEA3E4AEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.Entities", "ProductManagement.Entities\ProductManagement.Entities.csproj", "{18CDF5BA-7F1A-49FB-8877-C86EEA3E4AEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.Test", "ProductManagement.Test\ProductManagement.Test.csproj", "{9B66583F-B425-47C8-865C-3CAC19C4C5C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{18CDF5BA-7F1A-49FB-8877-C86EEA3E4AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18CDF5BA-7F1A-49FB-8877-C86EEA3E4AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18CDF5BA-7F1A-49FB-8877-C86EEA3E4AEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B66583F-B425-47C8-865C-3CAC19C4C5C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B66583F-B425-47C8-865C-3CAC19C4C5C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B66583F-B425-47C8-865C-3CAC19C4C5C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B66583F-B425-47C8-865C-3CAC19C4C5C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
