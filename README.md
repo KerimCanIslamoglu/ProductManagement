@@ -1,4 +1,4 @@
-###Information
+### Information
 - This project is built for simulate the basic functions of Product, Order and Campaign domains on a e-commerce platform.
 
 
