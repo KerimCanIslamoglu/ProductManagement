@@ -10,7 +10,7 @@ namespace ProductManagement.Business.Abstract
     public interface IProductService
     {
         Product GetProductByProductCode(string productCode);
-        void CreateProduct(Product product);
+        Product CreateProduct(Product product);
         void Update(Product product);
     }
 }

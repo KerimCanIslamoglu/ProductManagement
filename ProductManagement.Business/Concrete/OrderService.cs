@@ -39,6 +39,8 @@ namespace ProductManagement.Business.Concrete
 
                     if (campaign != null)
                     {
+                        var tempProductPrice = productDetail.Price;
+
                         if ((campaign.Duration > currentTime.CurrentTime)
                             && campaign.TotalSales <= campaign.TargetSalesCount
                            && ((campaign.TotalSales + quantity) <= campaign.TargetSalesCount))
@@ -46,7 +48,7 @@ namespace ProductManagement.Business.Concrete
                             var random = new Random();
                             var discount = random.Next(1, campaign.PriceManipulationLimit);
 
-                            productDetail.Price = ((100 - discount) * productDetail.Price) / 100;
+                            productDetail.Price = Math.Round(((100 - discount) * productDetail.Price) / 100);
 
                             var productOrders = _orderDal.GetAll(x => x.Product.ProductCode == productCode);
 
@@ -54,12 +56,12 @@ namespace ProductManagement.Business.Concrete
 
                             foreach (var productOrder in productOrders)
                             {
-                                totalProductPrice += (productOrder.TotalPrice / productOrder.Quantity);
+                                totalProductPrice += Math.Round(productOrder.TotalPrice / productOrder.Quantity);
                             }
 
                             campaign.TotalSales += quantity;
-                            campaign.TurnOver += (quantity * productDetail.Price);
-                            campaign.AverageItemPrice = totalProductPrice / (productOrders.Count+1);
+                            campaign.TurnOver += Math.Round(quantity * productDetail.Price);
+                            campaign.AverageItemPrice = Math.Round(totalProductPrice / (productOrders.Count+1));
 
                             _campaignDal.Update(campaign);
                         }
@@ -73,6 +75,7 @@ namespace ProductManagement.Business.Concrete
 
                         _orderDal.Create(order);
 
+                        productDetail.Price = tempProductPrice;
                         productDetail.Stock -= quantity;
                         _productDal.Update(productDetail);
                     }

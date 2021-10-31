@@ -22,9 +22,17 @@ namespace ProductManagement.Business.Concrete
             _timeService = timeService;
         }
 
-        public void CreateProduct(Product product)
+        public Product CreateProduct(Product product)
         {
-            _productDal.Create(product);
+            Product productToBeCreated = null;
+            var productControll = _productDal.GetOne(x => x.ProductCode == product.ProductCode);
+            if (productControll == null)
+            {
+                _productDal.Create(product);
+                productToBeCreated = _productDal.GetOne(x => x.ProductCode == product.ProductCode);
+            }
+
+            return productToBeCreated;
         }
 
         public void Update(Product product)
@@ -43,8 +51,8 @@ namespace ProductManagement.Business.Concrete
 
                 if (campaign != null)
                 {
-                    if (currentTime.CurrentTime>0
-                        &&(campaign.Duration > currentTime.CurrentTime)
+                    if (currentTime.CurrentTime > 0
+                        && (campaign.Duration > currentTime.CurrentTime)
                         && campaign.TotalSales < campaign.TargetSalesCount)
                     {
                         var random = new Random();

@@ -47,7 +47,7 @@ namespace ProductManagement.Api.Controllers
                 {
                     Success = false,
                     StatusCode = 404,
-                    Message = $"Campaign is not created; the product with the {createCampaignDto.ProductCode} code does not exist",
+                    Message = $"Campaign is not created",
                     Response = null
                 });
             }

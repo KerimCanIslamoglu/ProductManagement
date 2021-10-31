@@ -25,8 +25,9 @@ namespace ProductManagement.Business.Concrete
             Campaign campaign = null;
 
             var product = _productDal.GetOne(x => x.ProductCode == productCode);
+            var campaignControl = _campaignDal.GetOne(x => x.CampaignName == campaignName);
 
-            if (product != null)
+            if (product != null&& campaignControl == null)
             {
                 campaign = new Campaign()
                 {

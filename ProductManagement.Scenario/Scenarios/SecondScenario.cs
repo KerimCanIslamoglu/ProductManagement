@@ -114,6 +114,16 @@ namespace ProductManagement.Scenario.Scenarios
             if (campaignInfo != null)
                 Console.WriteLine(campaignInfo.Message);
 
+
+
+
+            url = baseUrl + "time/reset_time";
+            var resetTime = await restApiGenerator.PutApi<ResponseModel<string>>(null, url);
+            if (resetTime != null)
+            {
+                Console.WriteLine("Time is resetting to 0...");
+                Console.WriteLine(resetTime.Message);
+            }
         }
     }
 }

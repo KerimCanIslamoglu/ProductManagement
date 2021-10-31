@@ -32,16 +32,28 @@ namespace ProductManagement.Api.Controllers
                 Stock = createProductDto.Stock
             };
 
+            var productControl=_productService.CreateProduct(product);
 
-            _productService.CreateProduct(product);
-
-            return Ok(new ResponseModel<CreateProductDto>
+            if (productControl != null)
             {
-                Success = true,
-                StatusCode = 200,
-                Message = $"Product created; code {createProductDto.ProductCode}, price {createProductDto.Price}, stock { createProductDto.Stock} ",
-                Response = null
-            });
+                return Ok(new ResponseModel<CreateProductDto>
+                {
+                    Success = true,
+                    StatusCode = 200,
+                    Message = $"Product created; code {createProductDto.ProductCode}, price {createProductDto.Price}, stock { createProductDto.Stock} ",
+                    Response = null
+                });
+            }
+            else
+            {
+                return NotFound(new ResponseModel<CreateProductDto>
+                {
+                    Success = false,
+                    StatusCode = 404,
+                    Message = $"Product is not created",
+                    Response = null
+                });
+            }
         }
 
         [HttpGet]
