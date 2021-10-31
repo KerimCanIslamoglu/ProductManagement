@@ -1,3 +1,7 @@
+###Information
+- This project is built for simulate the basic functions of Product, Order and Campaign domains on a e-commerce platform.
+
+
 ### Tech Stack
 
 - C#, .Net 5.0, Entity Framework Core, Code First, MSSQL,  NUnit, Swagger
@@ -19,3 +23,7 @@ ProductManagement.DataAccess -> Context -> ApplicationDbContext
 
 - The database and the tables would be created on application start.
 - The time parameter would be seeded to the database on application start.
+- In order to simulate the scenarios, you have to set  multiple start project on solution explorer properties. The projects are ProductManagement.Api and ProductManagement.Scenario
+
+
+
