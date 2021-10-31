@@ -1,6 +1,10 @@
 ### Tech Stack
 
-- C#, .Net Core 5.0, Entity Framework Core, Code First, MSSQL,  NUnit, Swagger
+- C#, .Net 5.0, Entity Framework Core, Code First, MSSQL,  NUnit, Swagger
+
+### Requirements
+
+- .Net 5.0 and Sql Server must be installed on your machine.
 
 ### For starter
 
@@ -15,5 +19,3 @@ ProductManagement.DataAccess -> Context -> ApplicationDbContext
 
 - The database and the tables would be created on application start.
 - The time parameter would be seeded to the database on application start.
-
-
